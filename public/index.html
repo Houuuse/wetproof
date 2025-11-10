@@ -3,9 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Wetproof — Stage 2</title>
+    <title>Wetproof — Report</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/style.css" />
+    <!-- pdfjs in the browser -->
+    <script src="/pdfjs/legacy/build/pdf.js"></script>
+
 </head>
 
 <body>
@@ -44,9 +47,27 @@
             <button id="submitBtn" type="submit">Upload & Inspect</button>
         </form>
 
-        <section>
-            <h2>Response</h2>
-            <pre id="out">—</pre>
+        <section id="reportActions" class="actions" hidden>
+            <button id="downloadHtmlBtn" type="button">Download report (.html)</button>
+            <button id="printBtn" type="button">Print / Save as PDF</button>
+            <button id="copySummaryBtn" type="button">Copy summary</button>
+        </section>
+
+        <section id="previewSection" hidden>
+            <h2>Preview</h2>
+            <canvas id="previewCanvas" class="preview-canvas"></canvas>
+            <p class="hint">Preview shows page 1 only (for speed). Full preflight below.</p>
+        </section>
+
+        <section id="reportSection" hidden>
+            <h2>Report</h2>
+            <div id="summary" class="summary"></div>
+            <div id="pageCards" class="cards"></div>
+
+            <details class="raw-json">
+                <summary>Raw JSON (debug)</summary>
+                <pre id="out">—</pre>
+            </details>
         </section>
     </main>
 

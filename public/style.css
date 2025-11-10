@@ -1,19 +1,64 @@
 * { box-sizing: border-box; }
+:root {
+  --ok: #137c13;
+  --warn: #a06b00;
+  --bad: #b10f2e;
+  --muted: #555;
+}
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   margin: 24px;
   line-height: 1.5;
+  background: #ffffff;
+  color: #111;
 }
-main { max-width: 720px; margin: 0 auto; }
-form { display: grid; gap: 12px; margin-bottom: 24px; }
-pre {
-  background: #111;
-  color: #e6e6e6;
-  padding: 12px;
-  border-radius: 8px;
-  overflow: auto;
+main { max-width: 960px; margin: 0 auto; }
+h1, h2 { margin: 0 0 12px; }
+form {
+  display: grid; gap: 12px; margin-bottom: 20px;
+  background: #fafafa; padding: 16px; border-radius: 12px; border: 1px solid #e6e6e6;
 }
-button { padding: 8px 12px; }
-
 .grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
-@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+input, select, button {
+  padding: 8px 10px; border-radius: 8px; border: 1px solid #d8d8d8; background: #fff; color: #111;
+}
+button { cursor: pointer; }
+button:hover { background: #f2f2f2; }
+
+.preview-canvas { width: 100%; max-width: 480px; background: #fff; border-radius: 8px; display: block; border: 1px solid #eee; }
+.hint { color: var(--muted); margin-top: 8px; }
+
+.actions { display: flex; gap: 10px; margin: 14px 0 16px; }
+
+.summary {
+  background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid #ececec;
+}
+.badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; border: 1px solid #bbb; }
+.badge.ok { border-color: var(--ok); color: var(--ok); }
+.badge.warn { border-color: var(--warn); color: var(--warn); }
+.badge.bad { border-color: var(--bad); color: var(--bad); }
+
+.cards { display: grid; gap: 12px; grid-template-columns: 1fr; }
+.card {
+  background: #fff; border: 1px solid #ececec; border-radius: 12px; padding: 12px;
+}
+.card h3 { margin: 0 0 8px; }
+.kv { display: grid; grid-template-columns: max-content 1fr; column-gap: 10px; row-gap: 4px; }
+.kv div:nth-child(odd) { color: #444; }
+.kv div:nth-child(even) { color: #111; }
+
+.raw-json pre {
+  background: #f8f8f8; color: #222; padding: 12px; border-radius: 8px; overflow: auto;
+  border: 1px solid #ececec;
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  form, .raw-json, .actions { display: none !important; }
+  .card, .summary { background: #fff; border-color: #ccc; }
+}
+
+/* Add to public/style.css */
+html, body, main, form { overflow: visible; }
+select { position: relative; z-index: 10; }

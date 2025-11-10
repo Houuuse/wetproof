@@ -6,8 +6,8 @@
     <title>Wetproof — Report</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/style.css" />
-    <!-- pdfjs in the browser -->
-    <script src="/pdfjs/legacy/build/pdf.js"></script>
+
+
 
 </head>
 
@@ -15,7 +15,7 @@
     <main>
         <h1>Wetproof — PDF Check</h1>
 
-        <form id="uploadForm">
+        <form class="upload-form" id="uploadForm">
             <label for="pdfFile">Choose a PDF:</label>
             <input id="pdfFile" name="file" type="file" accept="application/pdf" required />
 
@@ -43,7 +43,7 @@
                     <input id="sizeToleranceMm" name="sizeToleranceMm" type="number" step="0.1" value="1.5" />
                 </div>
             </div>
-
+        
             <button id="submitBtn" type="submit">Upload & Inspect</button>
         </form>
 

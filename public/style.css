@@ -62,3 +62,10 @@ button:hover { background: #f2f2f2; }
 /* Add to public/style.css */
 html, body, main, form { overflow: visible; }
 select { position: relative; z-index: 10; }
+
+#submitBtn {
+  background-color:#52a447;
+  color:#fff;
+  width:25%;
+  margin: 0 auto;
+}

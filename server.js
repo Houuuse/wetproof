@@ -3,6 +3,8 @@ const multer = require('multer');
 const { PDFDocument, PDFName, PDFArray } = require('pdf-lib');
 const path = require('path');
 
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -128,7 +130,7 @@ app.post('/api/inspect', upload.single('file'), async (req, res, next) => {
       );
 
       const pageFlags = {
-        missingBleed: bleedMarginPt == null ? true : bleedMarginPt < minBleedPt,
+        missingBleed: bleedMarginPt == null ? true : bleedMarginPt < minBleedPt - 0.01,
         wrongSize: sizeCompare.matches === false,
       };
 

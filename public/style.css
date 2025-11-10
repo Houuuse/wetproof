@@ -1,0 +1,16 @@
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 24px;
+  line-height: 1.5;
+}
+main { max-width: 720px; margin: 0 auto; }
+form { display: grid; gap: 12px; margin-bottom: 24px; }
+pre {
+  background: #111;
+  color: #e6e6e6;
+  padding: 12px;
+  border-radius: 8px;
+  overflow: auto;
+}
+button { padding: 8px 12px; }

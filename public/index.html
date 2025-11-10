@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Wetproof — Stage 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body>
+    <main>
+        <h1>Wetproof — PDF Check (Stage 1)</h1>
+
+        <form id="uploadForm">
+            <label for="pdfFile">Choose a PDF:</label>
+            <input id="pdfFile" name="file" type="file" accept="application/pdf" required />
+            <button id="submitBtn" type="submit">Upload & Inspect</button>
+        </form>
+
+        <section>
+            <h2>Response</h2>
+            <pre id="out">—</pre>
+        </section>
+    </main>
+
+    <script src="/script.js"></script>
+</body>
+
+</html>

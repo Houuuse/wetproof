@@ -20,24 +20,25 @@
         }
 
         main {
-            max-width: 420px;
+            max-width: 520px;
             margin: 0 auto;
         }
 
         h1 {
             font-size: 1.25rem;
-            margin-bottom: 1rem;
+            margin: 0 0 1rem;
             color: var(--accent);
         }
 
         form {
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            gap: .5rem;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         input[type="file"] {
-            padding: 0.4rem;
+            padding: .4rem;
             border: 1px solid #ccc;
             border-radius: 6px;
         }
@@ -46,18 +47,17 @@
             background: var(--accent);
             color: #fff;
             border: none;
-            padding: 0.6rem 1rem;
+            padding: .6rem 1rem;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 0.95rem;
+            font-size: .95rem;
         }
 
         button:disabled {
-            opacity: 0.6;
+            opacity: .6;
             cursor: not-allowed;
         }
 
-        .card,
         .summary {
             border: 1px solid #ddd;
             border-radius: 10px;
@@ -67,7 +67,7 @@
         }
 
         .ok {
-            color: #1a7f1a;
+            color: #137c13;
         }
 
         .bad {
@@ -78,32 +78,89 @@
             color: #a06b00;
         }
 
-        #previewCanvas {
+        /* Multi-page preview */
+        .thumbs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .thumbs canvas,
+        .slide-canvas {
             display: block;
-            margin-top: 1rem;
             width: 100%;
-            max-height: 260px;
+            background: #fff;
             border: 1px solid #eee;
+            border-radius: 6px;
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            margin-top: 12px;
+        }
+
+        .slide-wrap {
+            position: relative;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, .9);
+            border: 1px solid #ddd;
+            border-radius: 999px;
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-prev {
+            left: -6px;
+        }
+
+        .nav-next {
+            right: -6px;
+        }
+
+        .pager {
+            text-align: center;
+            margin-top: 8px;
+            color: #555;
+            font-size: .9rem;
         }
     </style>
-
-    <!-- pdf.js (UMD global) -->
-    <script src="https://unpkg.com/pdfjs-dist@5.4.394/legacy/build/pdf.js"></script>
 </head>
 
 <body>
     <main>
         <h1>Wetproof Check</h1>
+
         <form id="uploadForm">
             <input type="file" id="pdfFile" name="file" accept="application/pdf" />
             <button id="checkBtn" type="submit">Run Check</button>
         </form>
 
-        <div id="summary" class="summary" hidden>
-            <p>Drop your file to start a check.</p>
-        </div>
+        <div id="summary" class="summary" hidden></div>
 
-        <canvas id="previewCanvas"></canvas>
+        <!-- Inline thumbs for ≤ 2 pages -->
+        <div id="thumbs" class="thumbs" hidden></div>
+
+        <!-- Carousel for > 2 pages -->
+        <section id="carousel" class="carousel" hidden>
+            <div class="slide-wrap">
+                <button id="prevBtn" class="nav-btn nav-prev" type="button" aria-label="Previous">‹</button>
+                <canvas id="slideCanvas" class="slide-canvas"></canvas>
+                <button id="nextBtn" class="nav-btn nav-next" type="button" aria-label="Next">›</button>
+            </div>
+            <div id="pager" class="pager">Page 1 / 1</div>
+        </section>
     </main>
 
     <script src="/embed.js"></script>

@@ -15,6 +15,10 @@ const DEFAULT_TOLERANCE_MM = 1.5;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/pdfjs', express.static(path.join(__dirname, 'node_modules', 'pdfjs-dist')));
 
+// in server.js
+app.get('/embed', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'embed.html'));
+});
 
 const upload = multer({
   storage: multer.memoryStorage(),
